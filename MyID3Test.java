@@ -19,7 +19,8 @@ public class MyID3Test {
 	    MyID3 id3 = new MyID3();
 
 	    // This creates a DecisionTreeData object that you can use for testing.
-	    DecisionTreeData shortData = DataReader.readFile("/course/cs0160/lib/decisiontree-data/short-data-training.csv");
+	    //DecisionTreeData shortData = DataReader.readFile("/course/cs0160/lib/decisiontree-data/short-data-training.csv");
+		DecisionTreeData shortData = DataReader.readFile("/Users/Arvind/Desktop/cs16/src/decisiontree/decisiontree-data/short-data-training.csv");
 	    // FILL
 	    
 	}
