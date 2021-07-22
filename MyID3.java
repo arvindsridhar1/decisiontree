@@ -135,15 +135,6 @@ public class MyID3 implements ID3 {
         }
 
         return attributes.get(newIndex);
-        /**
-        for (Attribute attribute: attributes){
-            if(this.calculateInformationGain(data, attribute) == maxInfo){
-                //Matches an attribute back to it's value, which has been singled out as the max information
-                return attribute;
-            }
-        }
-        return null;
-         */
     }
 
     public double calculateInformationGain(DecisionTreeData data, Attribute attribute){
