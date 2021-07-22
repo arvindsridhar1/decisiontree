@@ -54,7 +54,6 @@ public class MyID3 implements ID3 {
         }
         else{
             Attribute maxInfoAttribute = this.calculateMaxInfoAttribute(data, attributes);
-            System.out.println(maxInfoAttribute.getName());
             //System.out.println(this.calculateInformationGain(data, maxInfoAttribute));
             node.setElement(maxInfoAttribute.getName());
             Set<String> values = maxInfoAttribute.getValues();
@@ -74,6 +73,7 @@ public class MyID3 implements ID3 {
 
     public String findMostFrequentClassification(DecisionTreeData data){
         String[][] examples = data.getExamples();
+        _classifications = data.getClassifications();
         int lastCol = examples[0].length - 1;
         int numFirst = 0;
         int numSecond = 0;
@@ -139,11 +139,11 @@ public class MyID3 implements ID3 {
 
     public double calculateInformationGain(DecisionTreeData data, Attribute attribute){
         double informationGain = this.calculateEntropy(data) - this.calculateRemainder(data, attribute);
-        System.out.println(this.calculateEntropy(data) + ", " + this.calculateRemainder(data, attribute));
         return informationGain;
     }
 
     public double calculateEntropy(DecisionTreeData data){
+        _classifications = data.getClassifications();
         String[][] examples = data.getExamples();
         int lastCol = examples[0].length - 1;
         double positive = 0;
@@ -174,6 +174,7 @@ public class MyID3 implements ID3 {
     }
 
     public double calculateRemainder(DecisionTreeData data, Attribute attribute){
+        _classifications = data.getClassifications();
         double remainder = 0;
         String[][] examples = data.getExamples();
         double numExamples = examples.length;
@@ -203,6 +204,7 @@ public class MyID3 implements ID3 {
     }
 
     public DecisionTreeData newDataInitializer(DecisionTreeData data, Attribute attribute, String value, ArrayList<Attribute> attributes){
+        _classifications = data.getClassifications();
         String[][] examples = data.getExamples();
         int numNewRows = 0;
         int attributeColumn = attribute.getColumn();
