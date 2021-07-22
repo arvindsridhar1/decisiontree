@@ -95,7 +95,14 @@ public class MyID3Test {
 
 		DecisionTreeData newTestData = id3.newDataInitializer(shortData, pat, " Full", shortDataList);
 		assertTrue(newTestData.getExamples().length == 4);
+	}
 
+	@Test
+	public void testMaxInfoAttributeIndex(){
+		MyID3 id3 = new MyID3();
+		DecisionTreeData shortData = DataReader.readFile("/Users/Arvind/Desktop/cs16/src/decisiontree/decisiontree-data/short-data-training.csv");
+		ArrayList<Attribute> shortDataList = shortData.getAttributeList();
+		assertTrue(id3.maxInfoAttributeIndex(shortData, shortDataList) == 4);
 	}
 
 
