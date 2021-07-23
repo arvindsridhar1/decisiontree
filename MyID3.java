@@ -35,8 +35,8 @@ public class MyID3 implements ID3 {
         return this.myID3Algorithm(_new_data, data, attributes);
     }
 
-    /*
-     * TODO implement the algorithm - this is one possible method signature, feel free to change!
+    /**
+     * This is the recursive algorithm that sets up the decision tree
      */
     private DecisionTreeNode myID3Algorithm(DecisionTreeData data, DecisionTreeData parentData,  ArrayList<Attribute> attributes) {
         DecisionTreeNode node = new DecisionTreeNode();
@@ -71,6 +71,9 @@ public class MyID3 implements ID3 {
         }
     }
 
+    /**
+     * This method finds the most frequent classification in a given data set
+     */
     public String findMostFrequentClassification(DecisionTreeData data){
         String[][] examples = data.getExamples();
         _classifications = data.getClassifications();
@@ -91,7 +94,9 @@ public class MyID3 implements ID3 {
         return _classifications[1];
     }
 
-
+    /**
+     * This method checks whether there are no examples in a given data set
+     */
     public boolean checkDataEmpty(DecisionTreeData data){
         String[][] examples = data.getExamples();
         if(examples.length == 0){
@@ -100,6 +105,9 @@ public class MyID3 implements ID3 {
         return false;
     }
 
+    /**
+     * This method checks if there are no attributes within a given Attribute List
+     */
     public boolean checkAttributesEmpty(ArrayList<Attribute> attributes){
         if(attributes.isEmpty()){
             return true;
@@ -107,6 +115,9 @@ public class MyID3 implements ID3 {
         return false;
     }
 
+    /**
+     * This method checks whether every classification in the same in a data set
+     */
     public boolean sameClassificationCheck(DecisionTreeData data){
         String[][] examples = data.getExamples();
         int lastCol = examples[0].length - 1;
@@ -120,6 +131,9 @@ public class MyID3 implements ID3 {
         return true;
     }
 
+    /**
+     * This method returns the attribute that has the most information gain in a particular data set
+     */
     public Attribute calculateMaxInfoAttribute(DecisionTreeData data, ArrayList<Attribute> attributes){
         ArrayList<Double> informationGains = new ArrayList<>();
         for (Attribute attribute: attributes){
@@ -137,11 +151,17 @@ public class MyID3 implements ID3 {
         return attributes.get(newIndex);
     }
 
+    /**
+     * A method that mathematically computes and returns the information gain for a given attribute
+     */
     public double calculateInformationGain(DecisionTreeData data, Attribute attribute){
         double informationGain = this.calculateEntropy(data) - this.calculateRemainder(data, attribute);
         return informationGain;
     }
 
+    /**
+     * This method calculates the entropy of a given data set mathematically
+     */
     public double calculateEntropy(DecisionTreeData data){
         _classifications = data.getClassifications();
         String[][] examples = data.getExamples();
@@ -159,6 +179,9 @@ public class MyID3 implements ID3 {
         return calculateEntropyHelper(positive, negative);
     }
 
+    /**
+     * A helper method for the mathematical computation of entropy
+     */
     public double calculateEntropyHelper(double positive, double negative){
         double ratio = positive/(positive + negative);
         double entropy = -1 * ((ratio * this.logBaseTwo(ratio)) +
@@ -166,6 +189,9 @@ public class MyID3 implements ID3 {
         return entropy;
     }
 
+    /**
+     * A helper method for the mathematical computation of entropy
+     */
     public double logBaseTwo(double logNumber){
         if(logNumber == 0){
             return 0;
@@ -173,6 +199,9 @@ public class MyID3 implements ID3 {
         return Math.log(logNumber) / Math.log(2);
     }
 
+    /**
+     * A method that calculates the remainder of an attribute by calculating the weighted entropy of its subsets
+     */
     public double calculateRemainder(DecisionTreeData data, Attribute attribute){
         _classifications = data.getClassifications();
         double remainder = 0;
@@ -203,6 +232,9 @@ public class MyID3 implements ID3 {
         return remainder;
     }
 
+    /**
+     * A method that initializes a new set of Data based on the given parameters
+     */
     public DecisionTreeData newDataInitializer(DecisionTreeData data, Attribute attribute, String value, ArrayList<Attribute> attributes){
         _classifications = data.getClassifications();
         String[][] examples = data.getExamples();
@@ -225,6 +257,9 @@ public class MyID3 implements ID3 {
         return newData;
     }
 
+    /**
+     * A helper method for the specific index computation of the max information gain element in an arrayList
+     */
     public int maxInfoAttributeIndex(DecisionTreeData data, ArrayList<Attribute> attributes){
         for(int i=0; i < attributes.size(); i++){
             if(attributes.get(i).equals(this.calculateMaxInfoAttribute(data, attributes))){

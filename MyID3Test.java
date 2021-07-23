@@ -14,22 +14,21 @@ import java.util.ArrayList;
  */
 
 public class MyID3Test {
-	
+
+	/**
+	 * A test that just makes sure that there are no errors in getting a filepath for data
+	 */
 	@Test
 	public void simpleTest() {
-	    
 	    MyID3 id3 = new MyID3();
-
 	    // This creates a DecisionTreeData object that you can use for testing.
 	    //DecisionTreeData shortData = DataReader.readFile("/course/cs0160/lib/decisiontree-data/short-data-training.csv");
 		DecisionTreeData shortData = DataReader.readFile("/Users/Arvind/Desktop/cs16/src/decisiontree/decisiontree-data/short-data-training.csv");
-	    
 	}
-	
-	/**
-	 * TODO: add your tests below!
-	 */
 
+	/**
+	 * Tests whether the calculateMaxInfoAttribute method works as intended
+	 */
 	@Test
 	public void checkMaxAttribute(){
 		MyID3 id3 = new MyID3();
@@ -39,6 +38,9 @@ public class MyID3Test {
 		assertTrue(id3.calculateMaxInfoAttribute(shortData, shortDataList).getName().equals(" Pat"));
 	}
 
+	/**
+	 * Tests whether the findMostFrequentClassification method works as intended
+	 */
 	@Test
 	public void checkMostFrequentClassificiation(){
 		MyID3 id3 = new MyID3();
@@ -46,6 +48,9 @@ public class MyID3Test {
 		assertTrue(id3.findMostFrequentClassification(shortData).equals(" true"));
 	}
 
+	/**
+	 * Tests whether the checkDataEmpty method works as intended
+	 */
 	@Test
 	public void checkDataEmpty(){
 		MyID3 id3 = new MyID3();
@@ -53,6 +58,9 @@ public class MyID3Test {
 		assertTrue(id3.checkDataEmpty(shortData) == false);
 	}
 
+	/**
+	 * Tests whether the checkAttibutesEmpty method works as intended
+	 */
 	@Test
 	public void checkAttributesEmpty(){
 		MyID3 id3 = new MyID3();
@@ -61,6 +69,9 @@ public class MyID3Test {
 		assertTrue(id3.checkAttributesEmpty(shortDataList) == false);
 	}
 
+	/**
+	 * Tests whether the sameClassificationCheck method works as intended
+	 */
 	@Test
 	public void checkSameClassification(){
 		MyID3 id3 = new MyID3();
@@ -68,6 +79,9 @@ public class MyID3Test {
 		assertTrue(id3.sameClassificationCheck(shortData) == false);
 	}
 
+	/**
+	 * Tests whether the entropy calculation method works as intended
+	 */
 	@Test
 	public void checkEntropy(){
 		MyID3 id3 = new MyID3();
@@ -75,6 +89,9 @@ public class MyID3Test {
 		assertTrue(id3.calculateEntropy(shortData) == 0.9544340029249649);
 	}
 
+	/**
+	 * Tests whether the information calculation method works as intended
+	 */
 	@Test
 	public void checkInformation(){
 		MyID3 id3 = new MyID3();
@@ -84,6 +101,9 @@ public class MyID3Test {
 		assertTrue(id3.calculateRemainder(shortData, pat) == 0.5);
 	}
 
+	/**
+	 * Tests whether new data is properly initialized in the newDataInitializer method
+	 */
 	@Test
 	public void checkNewDataInitializer(){
 		MyID3 id3 = new MyID3();
@@ -97,6 +117,9 @@ public class MyID3Test {
 		assertTrue(newTestData.getExamples().length == 4);
 	}
 
+	/**
+	 * Tests whether the maxInfoAttributeIndex method works as intended
+	 */
 	@Test
 	public void testMaxInfoAttributeIndex(){
 		MyID3 id3 = new MyID3();
@@ -104,6 +127,5 @@ public class MyID3Test {
 		ArrayList<Attribute> shortDataList = shortData.getAttributeList();
 		assertTrue(id3.maxInfoAttributeIndex(shortData, shortDataList) == 4);
 	}
-
 
 }
