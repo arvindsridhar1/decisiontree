@@ -42,7 +42,7 @@ public class MyID3Test {
 	 * Tests whether the findMostFrequentClassification method works as intended
 	 */
 	@Test
-	public void checkMostFrequentClassificiation(){
+	public void checkMostFrequentClassification(){
 		MyID3 id3 = new MyID3();
 		DecisionTreeData shortData = DataReader.readFile("/Users/Arvind/Desktop/cs16/src/decisiontree/decisiontree-data/short-data-training.csv");
 		assertTrue(id3.findMostFrequentClassification(shortData).equals(" true"));

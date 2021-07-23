@@ -54,13 +54,10 @@ public class MyID3 implements ID3 {
         }
         else{
             Attribute maxInfoAttribute = this.calculateMaxInfoAttribute(data, attributes);
-            //System.out.println(this.calculateInformationGain(data, maxInfoAttribute));
             node.setElement(maxInfoAttribute.getName());
             Set<String> values = maxInfoAttribute.getValues();
             for (String value: values){
                 DecisionTreeData new_data = this.newDataInitializer(data, maxInfoAttribute, value, attributes);
-                //System.out.println(value);
-                //Check here if there is attribute bug, maybe remove the if statement
                 if(attributes.contains(maxInfoAttribute)) {
                     attributes.remove(this.maxInfoAttributeIndex(data, attributes));
                 }

@@ -1,0 +1,28 @@
+README decisionTree
+
+Design Choices:
+    -MyID3:
+        - I used a variety of helper methods to guide my coding process in the writing of the ID3 algorithm
+
+    -MyID3Test:
+        -I had to edit the file path because my computer didn't recognize the shortData filepath given by the
+        stencil code
+
+Known Bugs:
+    - None!
+
+Handin:
+    - This is my final handin
+
+My Test Case Explanations:
+    - simpleTest(): A test that just makes sure that there are no errors in getting a filepath for data
+    - checkMaxAttribute(): Tests whether the calculateMaxInfoAttribute method works as intended
+    - checkMostFrequentClassification(): Tests whether the findMostFrequentClassification method works as intended
+    - checkDataEmpty(): Tests whether the checkDataEmpty method works as intended
+    - checkAttributesEmpty(): Tests whether the checkAttibutesEmpty method works as intended
+    - checkSameClassification(): Tests whether the sameClassificationCheck method works as intended
+    - checkEntropy(): Tests whether the entropy calculation method works as intended
+    - checkInformation(): Tests whether the information calculation method works as intended
+    - checkNewDataInitializer(): Tests whether new data is properly initialized in the newDataInitializer method
+    - testMaxInfoAttributeIndex(): Tests whether the maxInfoAttributeIndex method works as intended
+
